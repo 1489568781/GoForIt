@@ -3,14 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.study.goforit.MainActivity">
 
     <TextView
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />
+    <com.cjt2325.cameralibrary.JCameraView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/cameraView"
+        app:duration_max="10000"
+        app:iconMargin="20dp"
+        app:iconSize="30dp"
+        app:iconSrc="@drawable/ic_sync_black_24dp"
+        ></com.cjt2325.cameralibrary.JCameraView>
 </RelativeLayout>
