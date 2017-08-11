@@ -2,6 +2,7 @@ package com.study.goforit;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
@@ -11,6 +12,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -21,14 +23,49 @@ import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
-        private final int GET_PERMISSION_REQUEST = 100; //权限申请自定义码
-        private JCameraView jCameraView;
-        private boolean granted = false;
+    private final int GET_PERMISSION_REQUEST = 100; //权限申请自定义码
+    private JCameraView jCameraView;
+    private boolean granted = false;
+
+    //退出程序
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            Utils.saveString(getApplicationContext(),"you_can_pass","no");
+                finish();
+                System.exit(0);
+            return false;
+        }else {
+            return super.onKeyDown(keyCode, event);
+        }
+    }
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+            if (Utils.readString(getApplicationContext(),"havePass").equals("yes")){
+                if (Utils.readString(getApplicationContext(),"you_can_pass").equals("yes")){
+                    return;
+                }
+                //检查是否有设置过密码
+                Intent intent = new Intent(MainActivity.this,ShowPassActivity.class);
+                intent.putExtra("key","check");
+                startActivity(intent);
+
+            }
             setContentView(R.layout.activity_main);
+//检查是否已经设置密码
+
+
+
+
+//        setContentView(new TestView(this));
+
+
+
+
+
+
 
             jCameraView = (JCameraView) findViewById(R.id.cameraView);
 
@@ -58,6 +95,13 @@ public class MainActivity extends AppCompatActivity {
             //6.0动态权限获取
             getPermissions();
         }
+
+    public void show_pass(View view){
+        Intent intent = new Intent(MainActivity.this,ShowPassActivity.class);
+        intent.putExtra("key","set");
+        startActivity(intent);
+
+    }
 
         @Override
         protected void onStart() {

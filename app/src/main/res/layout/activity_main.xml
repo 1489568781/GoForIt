@@ -6,11 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.study.goforit.MainActivity">
 
-    <TextView
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
     <com.cjt2325.cameralibrary.JCameraView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,4 +15,9 @@
         app:iconSize="30dp"
         app:iconSrc="@drawable/ic_sync_black_24dp"
         ></com.cjt2325.cameralibrary.JCameraView>
+    <Button
+        android:onClick="show_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="设置手势密码" />
 </RelativeLayout>
