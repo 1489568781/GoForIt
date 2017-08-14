@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         if (keyCode == KeyEvent.KEYCODE_BACK){
             Utils.saveString(getApplicationContext(),"you_can_pass","no");
                 finish();
+            //更新了一条内容。。。
                 System.exit(0);
             return false;
         }else {
